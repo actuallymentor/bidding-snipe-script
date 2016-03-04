@@ -1,32 +1,35 @@
-console.log ( "Popup js loaded" ); 
-function saveChanges() {
-  // Get a values of the popup
-  var vv_worth = document.getElementById('worth').value;
-  var vv_page = document.getElementById('bidpage').value;
-
-  // Check that there's some code there.
-  if ( !( vv_worth ) ||  !( vv_page )  ) {
-    message('Error: Not all values specified');
-    return;
+console.log ( "Popup js loaded" );
+chrome.storage.sync.get({
+  vv_bidding: false,
+  vv_worth: 0
+}, function(item) {
+  if  ( item['vv_bidding'] ) {
+    document.getElementById('status').innerHTML = 'active - ' + item['vv_worth'];
+  } else if ( !item['vv_bidding'] ) {
+    document.getElementById('status').innerHTML = 'inactive - ' + item['vv_worth'];
   }
-  // Save it using the Chrome extension storage API.
-  chrome.storage.sync.set({'vv_worth': vv_worth}, function() {
-    // Notify that we saved.
-    message('Settings saved');
-  });
-  // Save it using the Chrome extension storage API.
-  chrome.storage.sync.set({'vv_page': vv_page}, function() {
-    // Notify that we saved.
-    message('Settings saved');
-  });
-}
+});
+
 
 document.getElementById('activate').addEventListener("click", function (  ) {
-  console.log ( "You clicked the button! Well done." ); 
+  console.log ( "Activate bidder" );
   chrome.storage.sync.set({
-    vv_bidding: true
+    vv_bidding: true,
+    vv_worth: document.getElementById('worth').value
   }, function(item) {
-    console.log ( "Set bigging to true" ); 
+    console.log ( "Set bidding on and value" );
+    document.getElementById('status').innerHTML = 'active - ' + item['vv_worth'];
+  });
+} 
+);
+
+document.getElementById('deactivate').addEventListener("click", function (  ) {
+  console.log ( "Deactivating bidder" ); 
+  chrome.storage.sync.set({
+    vv_bidding: false
+  }, function(item) {
+    console.log ( "Set bidding to true" );
+    document.getElementById('status').innerHTML = 'inactive - ' + item['vv_worth'];
   });
 } 
 );
