@@ -11,9 +11,7 @@ jq.onload = function() {
 
 };
 
-
-
-
+var biddingspeed = 5000; // Bid every how many milliseconds
 
 window.setInterval(function(){
 
@@ -24,7 +22,6 @@ window.setInterval(function(){
 	var imwinning = jQuery('#highestBidder').text(); // Get the current highest bidder
 	var timeleft = jQuery ( '.time-value.minutes' ).text (  ); // Get the time left, but only the minutes, not the seconds
 	var worthtome = 16; // Set the max price I'm willing to pay
-	var biddingspeed = 5000; // Bid every how many milliseconds?
 
 	// Update the time we have left
 	timeleft = jQuery ( '.time-value.minutes' ).text (  );
@@ -47,7 +44,7 @@ window.setInterval(function(){
 			jQuery ( '#jsActiveBidInput' ).val ( nowbid ); 
 			jQuery ( '#jsActiveBidButton' ).trigger ( "click" );
 			console.log ( 'Bidding succeeded, I bid ' + nowbid ); 
-		} else ( ) {
+		} else {
 			if  ( !( imwinning == myname )  ) {
 				console.log ( "Not bidding because we hold the highest bid" ); 
 			}
@@ -60,4 +57,4 @@ window.setInterval(function(){
 		console.log ( 'Too much time left, not bidding' ); 
 	}
 }
-}, 5000);
+}, biddingspeed);
