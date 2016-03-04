@@ -1,8 +1,12 @@
 var jq = document.createElement('script');
-jq.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js";
+jq.src = "//code.jquery.com/jquery-latest.min.js";
 document.getElementsByTagName('head')[0].appendChild(jq);
 
-jQuery.noConflict();
+var isjq =  document.getElementsByTagName("head");
+jq.onload = function() {
+    jQuery.noConflict();
+    console.log ( 'jQ loaded' ); 
+};
 
 // Create needed variables
 var myname = "Mentor Palokaj"; // Set my name
@@ -41,3 +45,5 @@ window.setInterval(function(){
 		console.log ( 'Too much time left, not bidding' ); 
 	}
 }, 5000);
+
+
