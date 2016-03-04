@@ -6,28 +6,35 @@ jQuery.noConflict();
 
 // Create needed variables
 var myname = "Mentor Palokaj"; // Set my name
-var nowbid = $('#jsMainLotCurrentBid').text(); // Get the current bid
-var imwinning = $('#highestBidder').text(); // Get the current highest bidder
-var timeleft = $ ( '.time-value.minutes' ).text (  ); // Get the time left, but only the minutes, not the seconds
+var nowbid = jQuery('#jsMainLotCurrentBid').text(); // Get the current bid
+var imwinning = jQuery('#highestBidder').text(); // Get the current highest bidder
+var timeleft = jQuery ( '.time-value.minutes' ).text (  ); // Get the time left, but only the minutes, not the seconds
 var worthtome = 20; // Set the max price I'm willing to pay
 var biddingspeed = 5000; // Bid every how many milliseconds?
 
 window.setInterval(function(){
 
 	// Update the time we have left
-	timeleft = $ ( '.time-value.minutes' ).text (  );
+	timeleft = jQuery ( '.time-value.minutes' ).text (  );
 
 	// Check if the bidding is in the last minute
 	if  ( timeleft == 0 ) {
 
 		// Log that we are bidding
 		console.log ( 'We are in the last minute, Im bidding' ); 
-		nowbid = $('#jsMainLotCurrentBid').text();
-		imwinning = $('#highestBidder').text();
+
+		// Update the current time
+		nowbid = jQuery('#jsMainLotCurrentBid').text();
+
+		// Get out the current winning name
+		imwinning = jQuery('#highestBidder').text();
+
+
 		if  ( nowbid < worthtome &&  !( imwinning == myname )  ) {
-			$ ( '#jsActiveBidInput' ).val ( nowbid ); 
-			$ ( '#jsActiveBidButton' ).trigger ( "click" );
-			console.log ( 'Bidding succeeded, I bid ' + worthtome ); 
+			nowbid = nowbid + 1;
+			jQuery ( '#jsActiveBidInput' ).val ( nowbid ); 
+			jQuery ( '#jsActiveBidButton' ).trigger ( "click" );
+			console.log ( 'Bidding succeeded, I bid ' + nowbid ); 
 		}
 	} else {
 		// Log that we are not bidding yet
