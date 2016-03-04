@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+
+  "name": "Vakantieveilingen Sniper",
+  "description": "This extension will bid for you on vakantieveilingen",
+  "version": "1.0",
+
+  "browser_action": {
+   "default_icon": "icon.png",
+   "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.vakantieveilingen.nl/*"],
+      "js": ["js/jquery-2.2.1.min.js","js/sniper.js"]
+    }
+  ],
+  "permissions": [
+   "activeTab"
+   ]
+}
