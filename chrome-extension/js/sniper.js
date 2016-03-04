@@ -1,9 +1,23 @@
 console.log ( "Sniper initiated" );
-var jqloaded = true;
+var isBidding;
+
+chrome.storage.sync.get({
+	vv_bidding: false
+}, function(item) {
+	isBidding = item['vv_bidding']; 
+});
+window.setInterval( function (  ) {
+	console.log ( "Bidding status: " + isBidding ); 
+	chrome.storage.sync.get({
+		vv_bidding: false
+	}, function(item) {
+		isBidding = item['vv_bidding']; 
+	});
+}, 5000);
 
 function startbidding ( biddingspeed ) { // Bidding speed is in milliseconds
 	window.setInterval(function(){
-		if  ( jqloaded )  {
+		if  ( isBidding )  {
 
 			// Create needed variables
 			var myname = "Mentor"; // Set my name
@@ -11,7 +25,7 @@ function startbidding ( biddingspeed ) { // Bidding speed is in milliseconds
 			var highestBidder = jQuery('#highestBidder').text(); // Get the current highest bidder
 			var timeleft = jQuery ( '.time-value.minutes' ).text (  ); // Get the time left, but only the minutes, not the seconds
 			var timeleft_sec = jQuery ( '.time-value.seconds' ).text (  ); // Get the time left, ins econds
-			var worthtome = 12; // Set the max price I'm willing to pay
+			var worthtome = 1; // Set the max price I'm willing to pay
 
 			// Update the time we have left
 			timeleft = jQuery ( '.time-value.minutes' ).text (  );

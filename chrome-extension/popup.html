@@ -2,10 +2,23 @@
 <html>
   <head>
     <title>VV Sniper</title>
-    <script src="popup.js"></script>
+    <style>
+      body {
+        width: 500px;
+      }
+      h1 {
+      	font-size: 20px;
+      }
+    </style>
   </head>
   <body>
-    <h1>VV Sniper</h1>
-    <button id="bidThis">Bid on this link</button>
+    <h1>Sniper</h1>
+    <label for="worth">What is this worth to you?</label>
+    <input id="worth" type="number" name="worth">
+    <br>
+    <label for="bidpage">Bid on this page?</label>
+    <input id="bidpage" name="bidpage" type="checkbox" value="0">
+    <button id="activate">Start</button>
+    <script src="js/popup.js"></script>
   </body>
 </html>
