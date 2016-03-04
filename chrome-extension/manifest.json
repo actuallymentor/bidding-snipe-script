@@ -11,7 +11,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.vakantieveilingen.nl/*"],
+      "matches": ["https://www.vakantieveilingen.nl/beauty/wellnessresorts/spa-zuiver_amsterdam.html"],
       "js": ["js/jquery-2.2.1.min.js","js/sniper.js"]
     }
   ],
