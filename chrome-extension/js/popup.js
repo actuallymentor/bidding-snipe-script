@@ -18,7 +18,7 @@ document.getElementById('activate').addEventListener("click", function (  ) {
     vv_worth: document.getElementById('worth').value
   }, function(item) {
     console.log ( "Set bidding on and value" );
-    document.getElementById('status').innerHTML = 'active - ' + item['vv_worth'];
+    document.getElementById('status').innerHTML = 'active - ' + document.getElementById('worth').value;
   });
 } 
 );
@@ -29,7 +29,7 @@ document.getElementById('deactivate').addEventListener("click", function (  ) {
     vv_bidding: false
   }, function(item) {
     console.log ( "Set bidding to true" );
-    document.getElementById('status').innerHTML = 'inactive - ' + item['vv_worth'];
+    document.getElementById('status').innerHTML = 'inactive - ' + document.getElementById('worth').value;
   });
 } 
 );
