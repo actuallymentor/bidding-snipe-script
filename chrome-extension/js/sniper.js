@@ -1,15 +1,5 @@
-console.log ( "Sniper initiated" ); 
-// Load jQuery into the screen
-var jq = document.createElement('script');
-jq.src = "//code.jquery.com/jquery-latest.min.js";
-document.getElementsByTagName('head')[0].appendChild(jq);
-var jqloaded = false;
-var isjq =  document.getElementsByTagName("head");
-jq.onload = function() {
-	jQuery.noConflict();
-	console.log ( 'jQ loaded' );
-	jqloaded = true;
-};
+console.log ( "Sniper initiated" );
+var jqloaded = true;
 
 function startbidding ( biddingspeed ) { // Bidding speed is in milliseconds
 	window.setInterval(function(){
@@ -21,12 +11,12 @@ function startbidding ( biddingspeed ) { // Bidding speed is in milliseconds
 			var highestBidder = jQuery('#highestBidder').text(); // Get the current highest bidder
 			var timeleft = jQuery ( '.time-value.minutes' ).text (  ); // Get the time left, but only the minutes, not the seconds
 			var timeleft_sec = jQuery ( '.time-value.seconds' ).text (  ); // Get the time left, ins econds
-			var worthtome = 16; // Set the max price I'm willing to pay
+			var worthtome = 12; // Set the max price I'm willing to pay
 
 			// Update the time we have left
 			timeleft = jQuery ( '.time-value.minutes' ).text (  );
 			// Check if the bidding is in the last minute
-			if  ( timeleft !== 0 ) {
+			if  ( timeleft == 0 ) {
 				// Check if the seconds are zero, what would mean the bidding is done
 				if  ( timeleft_sec == 0 ) {
 					// Log that bidding is closed
@@ -61,4 +51,7 @@ function startbidding ( biddingspeed ) { // Bidding speed is in milliseconds
 	}, biddingspeed * 1000);
 }
 
-startbidding ( 200 ); 
+console.log ( "Function defined" ) ;
+
+startbidding ( 10 ); 
+console.log ( "Function started" ); 

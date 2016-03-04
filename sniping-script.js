@@ -25,7 +25,7 @@ function startbidding ( biddingspeed ) { // Bidding speed is in milliseconds
 			// Update the time we have left
 			timeleft = jQuery ( '.time-value.minutes' ).text (  );
 			// Check if the bidding is in the last minute
-			if  ( timeleft !== 0 ) {
+			if  ( timeleft == 0 ) {
 				// Check if the seconds are zero, what would mean the bidding is done
 				if  ( timeleft_sec == 0 ) {
 					// Log that bidding is closed
