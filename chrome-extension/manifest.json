@@ -12,7 +12,7 @@
   "content_scripts": [
     {
       "matches": ["https://www.vakantieveilingen.nl/*"],
-      "js": ["js/jquery-2.2.1.min.js","js/sniper.js"]
+      "js": [ "js/sniper.js" ]
     }
   ],
   "permissions": [
