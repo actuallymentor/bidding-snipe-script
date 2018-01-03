@@ -15,3 +15,7 @@ The extension functions as follows:
 2. Click the extension icon ( default demo icon, blue globe )
 3. Set your desired bid and press start
 4. The extension nabivigates to the reopened auction if you lose
+
+Notes:
+
+- The extension asks for the bidding url, this is to make sure it only bids on one product as opposed to any open auction tabs. You still need to have a tab open with the auction of your choice
