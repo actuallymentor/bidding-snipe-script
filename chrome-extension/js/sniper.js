@@ -37,6 +37,9 @@ class Sniper {
 	// Activate or deactivate
 	setactive( status ) {  typeof status == 'boolean' ? ( this.active = status ) : ( this.active = false ) }
 
+	// Set the url the extension is authorised to bid on
+	seturl( url ) { url ? ( this.url = url ) : ( this.url = false ) }
+
 	// Is the input box available? Set a sniper action at a periodic interval, otherwise console a message
 	start( ) { this.input ? setInterval( f => this.shoot(  ), 1000 ) : console.log( 'Sniper: Not a bidding page, or not logged in' ) }
 
@@ -53,8 +56,8 @@ class Sniper {
 		// Reload if the auction has ended
 		if( this.ended ) return this.reload()		
 
-		// Return a message if we are not activated
-		if( !this.active ) return debug ? console.log( 'Sniper not active' ) : false
+		// Return a message if we are not activated or on the wrong page
+		if( !this.active || this.url != window.location.href ) return debug ? console.log( 'Sniper not active' ) : false
 		if( this.active && debug ) console.log( 'Sniper active' )
 
 		// Set price and bid
@@ -81,10 +84,11 @@ window.onload = f => {
 	// Generate a sniper
 	const sniper = new Sniper( )
 
-	chrome.storage.sync.get( [ 'vv_bid', 'vv_bidding' ], data => { 
+	chrome.storage.sync.get( [ 'vv_bid', 'vv_bidding', 'vv_url' ], data => { 
 		if( debug ) console.log( data )
 		sniper.setprice( data.vv_bid )
 		sniper.setactive( data.vv_bidding )
+		sniper.seturl( data.vv_url )
 		sniper.start( )
 	} )
 
@@ -92,6 +96,7 @@ window.onload = f => {
 		if( debug ) console.log( 'Change detected', changes )
 		if( changes.vv_bid ) sniper.setprice( changes.vv_bid.newValue )
 		if( changes.vv_bidding ) sniper.setactive( changes.vv_bidding.newValue )
+		if( changes.vv_url ) sniper.seturl( changes.vv_url )
 		if( debug ) sniper.report( changes )
 	 } )
 	
