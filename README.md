@@ -1,6 +1,6 @@
-# Bidding script
+# VV Bidding Chrome Extension
 
-I don't like manually bidding, so I'll let the computer do it for me.
+I don't like manually bidding on [Vakantie Veilingen](https://www.vakantieveilingen.nl), so I'll let the computer do it for me.
 
 The folder chrome-extension can be loaded as an extension in chrome:
 
