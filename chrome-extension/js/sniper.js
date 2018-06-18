@@ -25,7 +25,7 @@ class Sniper {
 
 		// Is this the 2nd last second?
 		Object.defineProperty( this, 'gogogo', { 
-			get: f => Number( this.countdown.innerHTML ) < 3 ? true : false
+			get: f => this.countdown ? ( Number( this.countdown.innerHTML ) < 3 ? true : false ) : false
 		} )
 
 		// Has this auction ended? Based on the availablity of the time array
