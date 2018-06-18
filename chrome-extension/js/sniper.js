@@ -15,8 +15,14 @@ class Sniper {
 		// Grab relevant DOM elements
 		this.input 		= id( 'jsActiveBidInput' )
 		this.submit 	= id( 'jsActiveBidButton' )
-		this.countdown  = byclass( 'timer-countdown-label' )[0] // Grag the first hit since it shold be the only one
-		this.results 	= byclass( 'resultsBlockTitle' )[0]
+		// Grab counter dynamically
+		Object.defineProperty( this, 'countdown', { 
+			get: f => byclass( 'timer-countdown-label' )[0] // Grab the first hit since it shold be the only one
+		} )
+		Object.defineProperty( this, 'results', { 
+			get: f => byclass( 'resultsBlockTitle' )[0]
+		} )
+
 
 		// Get the current time as an array
 		// Object.defineProperty( this, 'time', { 
