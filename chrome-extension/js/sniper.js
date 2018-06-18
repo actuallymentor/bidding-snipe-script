@@ -1,4 +1,5 @@
 const id 		= theid => document.getElementById( theid )
+const byclass 	= theclass => document.getElementsByClassName( theclass )
 const set 		= ( theid, value ) => id( theid ).innerHTML = value
 const select 	= query => document.querySelectorAll( query )
 const click 	= ( theid, callback ) => id( theid ).addEventListener( 'click', callback )
@@ -14,20 +15,22 @@ class Sniper {
 		// Grab relevant DOM elements
 		this.input 		= id( 'jsActiveBidInput' )
 		this.submit 	= id( 'jsActiveBidButton' )
+		this.countdown  = byclass( 'timer-countdown-label' )[0] // Grag the first hit since it shold be the only one
+		this.results 	= byclass( 'resultsBlockTitle' )[0]
 
 		// Get the current time as an array
-		Object.defineProperty( this, 'time', { 
-			get: f => Array.prototype.map.call( select( '.bidding-block-wrap .time-value' ), timebit => timebit.textContent.replace( ':', '' ) )
-		} )
+		// Object.defineProperty( this, 'time', { 
+		// 	get: f => Array.prototype.map.call( select( '.bidding-block-wrap .time-value' ), timebit => timebit.textContent.replace( ':', '' ) )
+		// } )
 
 		// Is this the 2nd last second?
 		Object.defineProperty( this, 'gogogo', { 
-			get: f => this.time[0] == '00' && this.time[1] == '00'  && this.time[2] < '02' ? true : false
+			get: f => Number( this.countdown.innerHTML ) < 3 ? true : false
 		} )
 
 		// Has this auction ended? Based on the availablity of the time array
 		Object.defineProperty( this, 'ended', { 
-			get: f => this.time[0] ? false : true	
+			get: f => this.results ? true : false	
 		} )
 	}
 
